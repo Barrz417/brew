@@ -341,6 +341,7 @@ _brew_abv() {
       --days
       --debug
       --eval-all
+      --fetch-manifest
       --formula
       --github
       --help
@@ -783,6 +784,24 @@ _brew_create() {
   esac
 }
 
+_brew_debugger() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "${cur}" in
+    -*)
+      __brewcomp "
+      --debug
+      --help
+      --open
+      --quiet
+      --verbose
+      "
+      return
+      ;;
+    *) ;;
+  esac
+  __brew_complete_commands
+}
+
 _brew_deps() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "${cur}" in
@@ -1211,6 +1230,7 @@ _brew_info() {
       --days
       --debug
       --eval-all
+      --fetch-manifest
       --formula
       --github
       --help
@@ -1483,6 +1503,7 @@ _brew_list() {
   case "${cur}" in
     -*)
       __brewcomp "
+      --built-from-source
       --cask
       --debug
       --formula
@@ -1492,6 +1513,7 @@ _brew_list() {
       --installed-on-request
       --multiple
       --pinned
+      --poured-from-bottle
       --quiet
       --verbose
       --versions
@@ -1587,6 +1609,7 @@ _brew_ls() {
   case "${cur}" in
     -*)
       __brewcomp "
+      --built-from-source
       --cask
       --debug
       --formula
@@ -1596,6 +1619,7 @@ _brew_ls() {
       --installed-on-request
       --multiple
       --pinned
+      --poured-from-bottle
       --quiet
       --verbose
       --versions
@@ -2327,6 +2351,7 @@ _brew_tc() {
       ;;
     *) ;;
   esac
+  __brew_complete_tapped
 }
 
 _brew_test() {
@@ -2396,6 +2421,7 @@ _brew_typecheck() {
       ;;
     *) ;;
   esac
+  __brew_complete_tapped
 }
 
 _brew_unbottled() {
@@ -2881,6 +2907,7 @@ _brew() {
     config) _brew_config ;;
     contributions) _brew_contributions ;;
     create) _brew_create ;;
+    debugger) _brew_debugger ;;
     deps) _brew_deps ;;
     desc) _brew_desc ;;
     determine-test-runners) _brew_determine_test_runners ;;

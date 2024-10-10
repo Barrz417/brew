@@ -1,4 +1,4 @@
-# typed: true
+# typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
 require "rubocops/extend/formula_cop"
@@ -60,6 +60,10 @@ module RuboCop
 
           find_method_with_args(body_node, :system, "xcodebuild") do
             problem %q(use "xcodebuild *args" instead of "system 'xcodebuild', *args")
+          end
+
+          if !depends_on?(:xcode) && method_called_ever?(body_node, :xcodebuild)
+            problem "`xcodebuild` needs an Xcode dependency"
           end
 
           if (method_node = find_method_def(body_node, :install))

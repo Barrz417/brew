@@ -1,4 +1,4 @@
-# typed: true
+# typed: true # rubocop:todo Sorbet/StrictSigil
 # frozen_string_literal: true
 
 raise "#{__FILE__} must not be loaded via `require`." if $PROGRAM_NAME != __FILE__
@@ -11,7 +11,7 @@ require "timeout"
 require "formula_assertions"
 require "formula_free_port"
 require "fcntl"
-require "socket"
+require "utils/socket"
 require "cli/parser"
 require "dev-cmd/test"
 require "json/add/exception"
@@ -23,7 +23,7 @@ begin
   args = Homebrew::DevCmd::Test.new.args
   Context.current = args.context
 
-  error_pipe = UNIXSocket.open(ENV.fetch("HOMEBREW_ERROR_PIPE"), &:recv_io)
+  error_pipe = Utils::UNIXSocketExt.open(ENV.fetch("HOMEBREW_ERROR_PIPE"), &:recv_io)
   error_pipe.fcntl(Fcntl::F_SETFD, Fcntl::FD_CLOEXEC)
 
   trap("INT", old_trap)
