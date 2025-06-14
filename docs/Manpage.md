@@ -397,8 +397,7 @@ required and recommended dependencies.
 
 If any version of each formula argument is installed and no other options are
 passed, this command displays their actual runtime dependencies (similar to
-`brew linkage`), which may differ from the current versions' stated dependencies
-if the installed versions are outdated.
+`brew linkage`), which may differ from a formula's declared dependencies.
 
 *Note:* `--missing` and `--skip-recommended` have precedence over `--include-*`.
 
@@ -1051,6 +1050,14 @@ repository if no formula or cask is provided.
 `--cask`
 
 : Treat all named arguments as casks.
+
+### `mcp-server` \[`--debug`\]
+
+Starts the Homebrew MCP (Model Context Protocol) server.
+
+`-d`, `--debug`
+
+: Enable debug logging to stderr.
 
 ### `migrate` \[*`options`*\] *`installed_formula`*\|*`installed_cask`* \[...\]
 
@@ -3202,6 +3209,10 @@ Run Homebrew's unit and integration tests.
 `--fail-fast`
 
 : Exit early on the first failing test.
+
+`--no-parallel`
+
+: Run tests serially.
 
 `--only`
 

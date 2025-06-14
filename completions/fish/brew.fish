@@ -1226,6 +1226,13 @@ __fish_brew_complete_arg 'ls; and not __fish_seen_argument -l cask -l casks' -a 
 __fish_brew_complete_arg 'ls; and not __fish_seen_argument -l formula -l formulae' -a '(__fish_brew_suggest_casks_installed)'
 
 
+__fish_brew_complete_cmd 'mcp-server' 'Starts the Homebrew MCP (Model Context Protocol) server'
+__fish_brew_complete_arg 'mcp-server' -l debug -d 'Enable debug logging to stderr'
+__fish_brew_complete_arg 'mcp-server' -l help -d 'Show this message'
+__fish_brew_complete_arg 'mcp-server' -l quiet -d 'Make some output more quiet'
+__fish_brew_complete_arg 'mcp-server' -l verbose -d 'Make some output more verbose'
+
+
 __fish_brew_complete_cmd 'migrate' 'Migrate renamed packages to new names, where formula are old names of packages'
 __fish_brew_complete_arg 'migrate' -l cask -d 'Only migrate casks'
 __fish_brew_complete_arg 'migrate' -l debug -d 'Display any debugging information'
@@ -1686,6 +1693,7 @@ __fish_brew_complete_arg 'tests' -l debug -d 'Enable debugging using `ruby/debug
 __fish_brew_complete_arg 'tests' -l fail-fast -d 'Exit early on the first failing test'
 __fish_brew_complete_arg 'tests' -l generic -d 'Run only OS-agnostic tests'
 __fish_brew_complete_arg 'tests' -l help -d 'Show this message'
+__fish_brew_complete_arg 'tests' -l no-parallel -d 'Run tests serially'
 __fish_brew_complete_arg 'tests' -l online -d 'Include tests that use the GitHub API and tests that use any of the taps for official external commands'
 __fish_brew_complete_arg 'tests' -l only -d 'Run only `test_script_spec.rb`. Appending `:line_number` will start at a specific line'
 __fish_brew_complete_arg 'tests' -l profile -d 'Run the test suite serially to find the n slowest tests'
